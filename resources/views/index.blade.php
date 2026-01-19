@@ -6,12 +6,17 @@
 
 <style>
     /* ===================== VARIABLES & GLOBAL ===================== */
-    :root{
+    :root {
         --primary-blue: #0b3c5d;
         --accent-blue: #265491;
         --deep-black: #050505;
         --soft-gray: #f8f9fa;
         --pure-white: #ffffff;
+    }
+
+    img {
+        overflow-clip-margin: content-box;
+        overflow: clip;
     }
 
     * {
@@ -56,7 +61,7 @@
     }
 
     .digital-text-static {
-        font-size: 2.2rem;
+        font-size: 2rem;
         color: var(--primary-blue);
         text-transform: uppercase;
         font-weight: 800;
@@ -69,7 +74,7 @@
     }
 
     .hero-img-side img {
-        width: 100%;
+        max-width: 100%;
         height: 100%;
         object-fit: cover;
         /* Remplit tout l'espace sans déformation */
