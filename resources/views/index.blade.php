@@ -49,7 +49,7 @@
     /* Le texte occupe plus de place et passe au-dessus */
     .stadium-board {
         background: rgba(255, 255, 255, 0.96) transparent;
-        border-left: 8px solid var(--accent-blue);
+        border-left: 8px solid #eaf6ff;
         border-radius: 20px;
         padding: 45px;
         box-shadow: 20px 15px 40px rgba(0, 0, 0, 0.08);
@@ -185,6 +185,75 @@
             margin-top: 20px;
         }
     }
+    .text-secondary{
+        color: #265491 !important;
+    }
+
+
+    /* ===================== SECTION PRE-FOOTER ===================== */
+    .pre-footer-cta {
+        background: linear-gradient(135deg, var(--primary-blue) 0%, #2e5281 100%);
+        padding: 80px 0;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Décoration d'arrière-plan */
+    .pre-footer-cta::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 50%;
+    }
+
+    .stat-box {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        display: block;
+        margin-bottom: 5px;
+        color: #4dabff;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.9;
+    }
+
+    .cta-final-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 30px;
+        padding: 40px;
+        margin-top: 50px;
+    }
+
+    .btn-light-outline {
+        border: 2px solid white;
+        color: white;
+        padding: 12px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-light-outline:hover {
+        background: white;
+        color: var(--primary-blue);
+    }
 </style>
 
 <main>
@@ -313,6 +382,50 @@
                         <hr class="opacity-25">
                         <p class="small text-white-50">Nos experts vous répondent sous 24h ouvrées.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pre-footer-cta">
+        <div class="container">
+            <div class="row g-4 text-center justify-content-center fade-up">
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Taux d'ouverture</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <span class="stat-number">10M+</span>
+                        <span class="stat-label">SMS envoyés</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support Technique</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Sécurisé</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-final-card text-center fade-up">
+                <h2 class="fw-bold mb-3">Prêt à transformer votre communication digitale ?</h2>
+                <p class="lead mb-4 opacity-75">Rejoignez des centaines d'entreprises qui font confiance à l'expertise de TICAFRIQUE.</p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{{ route('ticafrique.demande') }}" class="btn btn-main" style="background: white; color: var(--primary-blue);">
+                        Démarrer mon projet
+                    </a>
+                    <a href="tel:+2252522002077" class="btn btn-light-outline">
+                        Nous appeler directement
+                    </a>
                 </div>
             </div>
         </div>
