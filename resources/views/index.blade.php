@@ -6,7 +6,7 @@
 
 <style>
     /* ===================== VARIABLES & GLOBAL ===================== */
-    :root {
+    :root{
         --primary-blue: #0b3c5d;
         --accent-blue: #265491;
         --deep-black: #050505;
@@ -18,8 +18,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !;
-
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     a {
@@ -27,10 +26,9 @@
     }
 
     body {
-
         color: var(--deep-black);
+        background-color: #fff;
     }
-
 
     .section-title {
         color: var(--primary-blue);
@@ -38,26 +36,23 @@
         margin-bottom: 1.5rem;
     }
 
-    /* ===================== HERO OPTIMISÉ (SUPERPOSITION) ===================== */
+    /* ===================== SECTION STADIUM (HERO) OPTIMISÉE ===================== */
     .stadium-hero {
         background-color: #eaf6ff;
-        padding: 100px 0;
-        overflow: visible;
-        /* Permet aux ombres et débordements d'être visibles */
+        padding: 80px 0;
     }
 
-    /* Le texte occupe plus de place et passe au-dessus */
+    /* Conteneur du texte : s'étire sur toute la hauteur */
     .stadium-board {
-        background: rgba(255, 255, 255, 0.96) transparent;
-        border-left: 8px solid #eaf6ff;
-        border-radius: 20px;
-        padding: 45px;
-        box-shadow: 20px 15px 40px rgba(0, 0, 0, 0.08);
-        position: relative;
+        background: #eaf6ff;
+        border-radius: 20px 0 0 20px;
+        padding: 50px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         z-index: 10;
-        /* Priorité d'affichage (dessus) */
-        margin-right: -80px;
-        /* Crée le chevauchement sur l'image */
+
     }
 
     .digital-text-static {
@@ -68,34 +63,45 @@
         line-height: 1.2;
     }
 
-    /* L'image est en dessous */
+    /* Conteneur de l'image : s'étire sur toute la hauteur */
     .hero-img-side {
-
-        position: relative;
-        z-index: 5;
-        /* Priorité d'affichage (dessous) */
+        height: 100%;
     }
 
     .hero-img-side img {
         width: 100%;
-        height: auto;
-        border-radius: 30px;
-        box-shadow: -20px 30px 80px rgba(11, 60, 93, 0.2);
-        transition: transform 0.5s ease;
-        margin-left: 18px;
+        height: 100%;
+        object-fit: cover;
+        /* Remplit tout l'espace sans déformation */
+        border-radius: 0 20px 20px 0;
+        /* Arrondi à droite */
+        box-shadow: 10px 15px 40px rgba(0, 0, 0, 0.1);
     }
 
+    /* ===================== BOUTONS & CARTES ===================== */
+    .btn-main {
+        background: var(--accent-blue);
+        color: var(--pure-white);
+        padding: 16px 40px;
+        border-radius: 50px;
+        font-weight: 600;
+        border: none;
+        transition: 0.3s;
+        display: inline-block;
+    }
 
-    /* ===================== ICONES & CARTES ===================== */
+    .btn-main:hover {
+        background: var(--primary-blue);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(38, 84, 145, 0.3);
+    }
+
     .hover-card {
         transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         border-radius: 20px;
         border: none;
         background: #fff;
-    }
-
-    .hover-card.shadow-sm {
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1) !important;
     }
 
     .hover-card:hover {
@@ -114,26 +120,7 @@
         margin: 0 auto 1.5rem;
     }
 
-    .btn-main {
-        background: var(--accent-blue);
-        border: var(--accent-blue);
-        color: var(--pure-white);
-        padding: 16px 40px;
-        border-radius: 50px;
-        font-weight: 600;
-        border: none;
-        text-decoration: none;
-        display: inline-block;
-        transition: 0.3s;
-    }
-
-    .btn-main:hover {
-        background: var(--primary-blue);
-        color: white;
-        box-shadow: 0 10px 20px rgba(38, 84, 145, 0.3);
-    }
-
-    /* ===================== CONTACT & ANIMATIONS ===================== */
+    /* ===================== CONTACT & STATS ===================== */
     .contact-modern-card {
         border-radius: 30px;
         overflow: hidden;
@@ -149,6 +136,20 @@
         margin-bottom: 15px;
     }
 
+    .pre-footer-cta {
+        background: linear-gradient(135deg, var(--primary-blue) 0%, #2e5281 100%);
+        padding: 80px 0;
+        color: white;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #4dabff;
+        display: block;
+    }
+
+    /* ===================== ANIMATIONS ===================== */
     .fade-up,
     .fade-left,
     .fade-right {
@@ -176,91 +177,29 @@
     /* ===================== RESPONSIVE ===================== */
     @media (max-width: 991px) {
         .stadium-board {
-            margin-right: 0;
-            margin-bottom: -40px;
+            border-radius: 20px;
+            margin-bottom: 0;
             padding: 30px;
         }
 
-        .hero-img-side {
+        .hero-img-side img {
+            border-radius: 20px;
+            height: 300px;
+            /* Hauteur fixe sur mobile */
             margin-top: 20px;
         }
-    }
-    .text-secondary{
-        color: #265491 !important;
-    }
 
-
-    /* ===================== SECTION PRE-FOOTER ===================== */
-    .pre-footer-cta {
-        background: linear-gradient(135deg, var(--primary-blue) 0%, #2e5281 100%);
-        padding: 80px 0;
-        color: white;
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* Décoration d'arrière-plan */
-    .pre-footer-cta::before {
-        content: "";
-        position: absolute;
-        top: -50px;
-        right: -50px;
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 50%;
-    }
-
-    .stat-box {
-        text-align: center;
-        padding: 20px;
-    }
-
-    .stat-number {
-        font-size: 3rem;
-        font-weight: 800;
-        display: block;
-        margin-bottom: 5px;
-        color: #4dabff;
-    }
-
-    .stat-label {
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        opacity: 0.9;
-    }
-
-    .cta-final-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 30px;
-        padding: 40px;
-        margin-top: 50px;
-    }
-
-    .btn-light-outline {
-        border: 2px solid white;
-        color: white;
-        padding: 12px 35px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: 0.3s;
-    }
-
-    .btn-light-outline:hover {
-        background: white;
-        color: var(--primary-blue);
+        .digital-text-static {
+            font-size: 1.8rem;
+        }
     }
 </style>
 
 <main>
     <section class="stadium-hero">
         <div class="container">
-            <div class="row align-items-center g-0">
-                <div class="col-lg-7 hero-text-side fade-left">
+            <div class="row align-items-stretch g-0">
+                <div class="col-lg-6 fade-left">
                     <div class="stadium-board">
                         <h1 class="digital-text-static">
                             Avec le SMS professionnel de TICAFRIQUE, améliorez votre productivité.
@@ -268,13 +207,17 @@
                         <p class="text-muted mt-4 fs-5">
                             Bénéficiez de nouveaux canaux de communication performants pour toucher vos cibles.
                         </p>
-                        <a href="{{ route('ticafrique.demande') }}" class="btn btn-main mt-4">
-                            Commander Maintenant
-                        </a>
+                        <div class="mt-2">
+                            <a href="{{ route('ticafrique.demande') }}" class="btn btn-main">
+                                Commander Maintenant
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-5 hero-img-side fade-right">
-                    <img src="{{ asset('site/img/1.jpg') }}" alt="Background Ticafrique">
+                <div class="col-lg-6 fade-right">
+                    <div class="hero-img-side">
+                        <img src="{{ asset('site/img/1.jpg') }}" alt="Background Ticafrique">
+                    </div>
                 </div>
             </div>
         </div>
@@ -303,7 +246,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card p-4 text-center hover-card shadow-sm h-100 fade-up">
                         <div class="icon-box">
-                            <i class="{{ $obj['icon'] }} fa-2x text-secondary"></i>
+                            <i class="{{ $obj['icon'] }} fa-2x" style="color: #265491;"></i>
                         </div>
                         <h5 class="fw-bold mb-3">{{ $obj['title'] }}</h5>
                         <p class="text-muted mb-0">{{ $obj['text'] }}</p>
@@ -324,9 +267,9 @@
                     <h2 class="section-title">Augmentez votre rendement avec le <span class="text-dark">SMS PROFESSIONNEL</span></h2>
                     <p class="lead text-muted">Le SMS est le canal le plus direct et le plus efficace pour toucher vos clients instantanément.</p>
                     <ul class="list-unstyled mb-4">
-                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i> Communication instantanée</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i> Message personnalisé</li>
-                        <li><i class="fas fa-check-circle text-secondary me-2"></i> Diffusion massive rapide</li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: #265491;"></i> Communication instantanée</li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: #265491;"></i> Message personnalisé</li>
+                        <li><i class="fas fa-check-circle me-2" style="color: #265491;"></i> Diffusion massive rapide</li>
                     </ul>
                     <a href="{{ route('ticafrique.demande') }}" class="btn btn-main">Commander</a>
                 </div>
@@ -362,12 +305,10 @@
                                     <textarea name="message" rows="4" class="form-modern" placeholder="Votre projet..." required></textarea>
                                 </div>
                             </div>
-
                             <div class="d-flex align-items-center gap-3 mt-3 p-3 bg-white rounded-3 border">
-                                <label class="mb-0 text-dark">Sécurité : entrez le nombre : <strong class="text-primary fs-5">{{ session('captcha') }}</strong></label>
-                                <input type="number" name="heure" class="form-control" style="width: 100px !important;" required>
+                                <label class="mb-0 text-dark">Sécurité : <strong class="text-primary">{{ session('captcha') }}</strong></label>
+                                <input type="number" name="heure" class="form-control" style="width: 100px;" required>
                             </div>
-
                             <button type="submit" class="btn btn-main mt-4 w-100">Envoyer le message</button>
                         </form>
                     </div>
@@ -391,41 +332,30 @@
         <div class="container">
             <div class="row g-4 text-center justify-content-center fade-up">
                 <div class="col-6 col-md-3">
-                    <div class="stat-box">
-                        <span class="stat-number">98%</span>
-                        <span class="stat-label">Taux d'ouverture</span>
-                    </div>
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label text-uppercase small">Taux d'ouverture</span>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="stat-box">
-                        <span class="stat-number">10M+</span>
-                        <span class="stat-label">SMS envoyés</span>
-                    </div>
+                    <span class="stat-number">10M+</span>
+                    <span class="stat-label text-uppercase small">SMS envoyés</span>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="stat-box">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Support Technique</span>
-                    </div>
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label text-uppercase small">Support Technique</span>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="stat-box">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Sécurisé</span>
-                    </div>
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label text-uppercase small">Sécurisé</span>
                 </div>
             </div>
 
-            <div class="cta-final-card text-center fade-up">
-                <h2 class="fw-bold mb-3">Prêt à transformer votre communication digitale ?</h2>
-                <p class="lead mb-4 opacity-75">Rejoignez des centaines d'entreprises qui font confiance à l'expertise de TICAFRIQUE.</p>
-                <div class="d-flex flex-wrap justify-content-center gap-3">
-                    <a href="{{ route('ticafrique.demande') }}" class="btn btn-main" style="background: white; color: var(--primary-blue);">
-                        Démarrer mon projet
-                    </a>
-                    <a href="tel:+2252522002077" class="btn btn-light-outline">
-                        Nous appeler directement
-                    </a>
+            <div class="text-center mt-5 fade-up">
+                <div class="p-5 rounded-4" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+                    <h2 class="fw-bold mb-3">Prêt à transformer votre communication ?</h2>
+                    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                        <a href="{{ route('ticafrique.demande') }}" class="btn btn-light px-5 py-3 rounded-pill fw-bold">Démarrer mon projet</a>
+                        <a href="tel:+2252522002077" class="btn btn-outline-light px-5 py-3 rounded-pill fw-bold">Nous appeler</a>
+                    </div>
                 </div>
             </div>
         </div>
