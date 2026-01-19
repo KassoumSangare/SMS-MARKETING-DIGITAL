@@ -8,7 +8,7 @@
     /* ===================== VARIABLES & GLOBAL ===================== */
     :root {
         --primary-blue: #0b3c5d;
-        --accent-blue: #0d6efd;
+        --accent-blue: #265491;
         --deep-black: #050505;
         --soft-gray: #f8f9fa;
         --pure-white: #ffffff;
@@ -31,7 +31,7 @@
         min-height: 75vh;
         display: flex;
         align-items: center;
-        background-color: #01146c;
+        background-color: #2e5281;
         /* Bleu de secours */
         padding: 60px 0;
         overflow: hidden;
@@ -284,35 +284,69 @@
 
     <section class="py-5" style="background: #f4f7f9;">
         <div class="container py-5">
+            {{-- Alertes de Succès --}}
+            @if(session('success'))
+            <div class="alert alert-success border-0 shadow-sm rounded-4 mb-4">
+                <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
+            </div>
+            @endif
+
+            {{-- Alertes d'Erreurs --}}
+            @if ($errors->any())
+            <div class="alert alert-danger border-0 shadow-sm rounded-4 mb-4">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             <div class="contact-modern-card shadow-lg">
                 <div class="row g-0">
                     <div class="col-lg-7 p-4 p-md-5 fade-left">
                         <h3 class="fw-bold mb-3 text-primary">Transmettez-nous votre demande</h3>
+
                         <form method="post" action="{{ route('ticafrique.store_contact') }}">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <input type="text" name="nom" class="form-modern" placeholder="Nom complet" required>
+                                    <input type="text" name="nom" class="form-modern" placeholder="Nom complet" value="{{ old('nom') }}" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" name="email" class="form-modern" placeholder="Adresse email" required>
+                                    <input type="tel" name="contact" class="form-modern" id="contact" placeholder="Ex: 0705030303" value="{{ old('contact') }}" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="email" name="email" class="form-modern" placeholder="Adresse email" value="{{ old('email') }}" required>
                                 </div>
                                 <div class="col-12">
-                                    <textarea name="message" rows="4" class="form-modern" placeholder="Votre projet..." required></textarea>
+                                    <textarea name="message" rows="4" class="form-modern" placeholder="Votre projet..." required>{{ old('message') }}</textarea>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center gap-3 mt-3">
-                                <span class="small text-muted">Vérification : <strong><span id="captcha"></span></strong></span>
-                                <input type="text" name="heure" class="form-control" style="max-width: 80px;" required>
+
+                            {{-- Zone de Sécurité Corrigée --}}
+                            <div class="d-flex align-items-center gap-3 mt-3 p-3 bg-white rounded-3 border">
+                                <label class="mb-0 text-dark">
+                                    Sécurité : entrez le nombre suivant :
+                                    <strong class="text-primary fs-5">{{ session('captcha') }}</strong>
+                                </label>
+                                <input type="number" name="heure" class="form-control" style="width: 100px !important;" placeholder="????" required>
                             </div>
+
                             <button type="submit" class="btn btn-main mt-4 w-100">Envoyer le message</button>
                         </form>
                     </div>
-                    <div class="col-lg-5 p-4 p-md-5 text-white fade-right" style="background: var(--primary-blue);">
+
+                    {{-- Infos de contact --}}
+                    <div class="col-lg-5 p-4 p-md-5 text-white fade-right" style="background: var(--primary-blue); min-height: 400px;">
                         <h4 class="fw-bold mb-4">Contact direct</h4>
-                        <p><i class="bi bi-geo-alt me-2"></i> Abidjan Cocody Angré, Belle Fleur 3</p>
-                        <p><i class="bi bi-telephone me-2"></i> +225 25 22 00 20 77</p>
-                        <p><i class="bi bi-envelope me-2"></i> info@ticafrique.com</p>
+                        <div class="mb-3">
+                            <p class="mb-2"><i class="bi bi-geo-alt me-2"></i> Abidjan Cocody Angré, Belle Fleur 3</p>
+                            <p class="mb-2"><i class="bi bi-telephone me-2"></i> +225 25 22 00 20 77</p>
+                            <p class="mb-2"><i class="bi bi-envelope me-2"></i> info@ticafrique.com</p>
+                        </div>
+                        <hr class="opacity-25">
+                        <p class="small text-white-50">Nos experts vous répondent sous 24h ouvrées.</p>
                     </div>
                 </div>
             </div>
@@ -335,11 +369,7 @@
 
         document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => observer.observe(el));
 
-        // Initialisation Captcha simple
-        const captchaEl = document.getElementById('captcha');
-        if (captchaEl) {
-            captchaEl.textContent = Math.floor(Math.random() * 90) + 10;
-        }
+
     });
 </script>
 

@@ -21,7 +21,7 @@
         :root {
             --primary-blue: #0b3c5d;
             --dark-blue: #082a3f;
-            --accent-blue: #0d6efd;
+            --accent-blue: #2e5281;
             --soft-white: #f8f9fa;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }

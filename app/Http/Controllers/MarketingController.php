@@ -12,6 +12,10 @@ class MarketingController extends Controller
     //index
     public function index()
     {
+        // On génère le code ici
+        $captcha = rand(10, 99);
+        // On le stocke en session pour la vérification future
+        session(['captcha' => $captcha]);
         return view('index');
     }
 
@@ -34,31 +38,41 @@ class MarketingController extends Controller
     }
     // contact
     public function contact()
+
     {
-        return view('fronts.sections.contact');
+
+        // On génère le code ici
+        $captcha = rand(10, 99);
+        // On le stocke en session pour la vérification future
+        session(['captcha' => $captcha]);
+        return view('fronts.sections.contact', compact('captcha'));
     }
 
-  
+
     public function store_contact(Request $request)
     {
-        // 1. Validation
+
+        // Validation
         $validated = $request->validate([
-            'nom'     => 'required|string|max:150',
-            'email'   => 'required|email|max:150',
-            'contact' => 'required|string|max:30',
-            'sujet'   => 'required|string|max:200',
-            'message' => 'required|string',
-            'heure'   => 'required|numeric'
+            'nom'     => 'nullable|string|max:150',
+            'email'   => 'nullable|email|max:150',
+            'contact' => 'nullable|string|max:30',
+            'sujet'   => 'nullable|string|max:200',
+            'message' => 'nullable|string',
+            'heure'   => 'nullable|numeric'
         ]);
 
-        // 2. Vérification captcha
+       
+
+        // Vérification du Captcha
         if ((int)$request->heure !== (int)session('captcha')) {
             return back()
                 ->withInput()
-                ->withErrors(['heure' => 'Captcha incorrect']);
+                ->withErrors(['heure' => 'Le code de sécurité est incorrect.']);
         }
 
-        // 3. Enregistrement
+
+        // Enregistrement
         Contact::create([
             'nom'     => $validated['nom'],
             'email'   => $validated['email'],
@@ -68,7 +82,7 @@ class MarketingController extends Controller
             'ip'      => $request->ip()
         ]);
 
-        // 4. Nettoyage captcha
+        // Reset du captcha
         session()->forget('captcha');
 
         return back()->with('success', 'Votre message a été envoyé avec succès.');

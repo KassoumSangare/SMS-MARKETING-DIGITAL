@@ -3,7 +3,7 @@
        VARIABLES & CORE
     ========================= */
     :root {
-        --primary-blue: #011d9a !important;
+        --primary-blue: #2e5281 !important;
         --dark-blue: #050b24 !important;
         /* Corrigé en bleu très sombre */
         --black: #111111 !important;

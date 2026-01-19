@@ -3,48 +3,26 @@
 
 @section('content')
 <style>
-    /* =========================
-       PAGE CONTACT PREMIUM
-    ========================= */
+    /* ... Vos styles CSS existants (gardez-les tels quels) ... */
     .contact-page-section {
         padding: 100px 0 !important;
-        background-color: var(--soft-white) !important;
+        background-color: #f8f9fa !important;
     }
 
     .contact-container {
-        background: var(--white) !important;
+        background: #fff !important;
         border-radius: 20px !important;
         overflow: hidden !important;
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05) !important;
         border: 1px solid rgba(0, 0, 0, 0.03) !important;
     }
 
-    /* Partie Formulaire */
     .contact-form-wrapper {
         padding: 50px !important;
     }
 
-    .contact-form-wrapper h3 {
-        font-family: 'Saira', sans-serif !important;
-        font-weight: 700 !important;
-        color: var(--dark-blue) !important;
-        margin-bottom: 35px !important;
-        font-size: 1.75rem !important;
-    }
-
-    /* Style des Labels et Inputs */
     .form-group-custom {
         margin-bottom: 25px !important;
-    }
-
-    .form-group-custom label {
-        font-weight: 600 !important;
-        font-size: 0.85rem !important;
-        color: var(--primary-blue) !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1px !important;
-        margin-bottom: 8px !important;
-        display: block !important;
     }
 
     .form-control-contact {
@@ -52,176 +30,134 @@
         border: 2px solid #f1f1f1 !important;
         border-radius: 10px !important;
         padding: 12px 18px !important;
-        font-size: 0.95rem !important;
         transition: all 0.3s ease !important;
-        background-color: #fdfdfd !important;
     }
 
-    .form-control-contact:focus {
-        border-color: var(--primary-blue) !important;
-        background-color: var(--white) !important;
-        outline: none !important;
-        box-shadow: 0 8px 20px rgba(1, 29, 154, 0.05) !important;
-    }
-
-    /* Sécurité */
     .security-row {
         background: rgba(1, 29, 154, 0.03) !important;
         padding: 20px !important;
         border-radius: 10px !important;
-        border: 1px dashed var(--primary-blue) !important;
+        border: 1px dashed #2e5281 !important;
         margin-bottom: 30px !important;
     }
 
-    /* Bouton Envoyer */
     .btn-send {
-        background: #202157 !important;
-        color: var(--white) !important;
-        border: none !important;
+        background: #2e5281 !important;
+        color: #fff !important;
         padding: 15px 45px !important;
         border-radius: 8px !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        transition: all 0.3s ease !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        gap: 10px !important;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
     }
 
-    .btn-send:hover {
-        background: var(--primary-blue) !important;
-        transform: translateY(-3px) !important;
-        box-shadow: 0 10px 20px rgba(1, 29, 154, 0.2) !important;
-    }
-
-    /* Colonne Adresse (Sidebar) */
     .contact-sidebar {
-        background-color: #202157 !important;
-        color: var(--white) !important;
+        background-color: #2e5281 !important;
+        color: #fff !important;
         padding: 50px !important;
         height: 100% !important;
-    }
-
-    .contact-sidebar h4 {
-        color: var(--white) !important;
-        font-weight: 700 !important;
-        margin-bottom: 40px !important;
-        position: relative !important;
-    }
-
-    .info-item {
-        display: flex !important;
-        align-items: flex-start !important;
-        gap: 20px !important;
-        margin-bottom: 30px !important;
-    }
-
-    .info-item i {
-        font-size: 1.25rem !important;
-        color: rgba(206, 206, 206, 0.6) !important;
-    }
-
-    .info-item p {
-        margin: 0 !important;
-        font-size: 0.95rem !important;
-        line-height: 1.6 !important;
-    }
-
-    @media (max-width: 991px) {
-
-        .contact-form-wrapper,
-        .contact-sidebar {
-            padding: 30px !important;
-        }
     }
 </style>
 
 <main class="contact-page-section">
     <div class="container">
+        {{-- Affichage des messages de succès --}}
+        @if(session('success'))
+        <div class="alert alert-success border-0 shadow-sm rounded-4 mb-4">
+            <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
+        </div>
+        @endif
+
+        {{-- Affichage des erreurs de validation --}}
+        @if ($errors->any())
+        <div class="alert alert-danger border-0 shadow-sm rounded-4 mb-4">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <div class="contact-container shadow-lg">
             <div class="row g-0">
-
                 <div class="col-lg-8">
                     <div class="contact-form-wrapper">
                         <h3>Transmettez-nous votre demande</h3>
 
                         <form method="post" action="{{ route('ticafrique.store_contact') }}">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group-custom">
                                     <label>Nom complet</label>
-                                    <input type="text" class="form-control-contact" placeholder="Ex: Jean Koffi" name="nom" required>
+                                    <input type="text" class="form-control-contact" placeholder="Ex: Jean Koffi" name="nom" value="{{ old('nom') }}" required>
                                 </div>
                                 <div class="col-md-6 form-group-custom">
                                     <label>E-mail</label>
-                                    <input type="email" class="form-control-contact" placeholder="votre@email.com" name="email" required>
+                                    <input type="email" class="form-control-contact" placeholder="votre@email.com" name="email" value="{{ old('email') }}" required>
                                 </div>
                                 <div class="col-md-6 form-group-custom">
                                     <label>Téléphone</label>
-                                    <input type="number" class="form-control-contact" placeholder="+225 00 00 00 00" name="contact" required>
+                                    <input type="text" class="form-control-contact" placeholder="+225 00 00 00 00" name="contact" value="{{ old('contact') }}" required>
                                 </div>
                                 <div class="col-md-6 form-group-custom">
                                     <label>Sujet</label>
-                                    <input type="text" class="form-control-contact" placeholder="Objet de votre message" name="sujet" required>
+                                    <input type="text" class="form-control-contact" placeholder="Objet de votre message" name="sujet" value="{{ old('sujet') }}" required>
                                 </div>
                             </div>
 
                             <div class="form-group-custom">
                                 <label>Message</label>
-                                <textarea class="form-control-contact" rows="5" placeholder="Comment pouvons-nous vous aider ?" name="message" required></textarea>
+                                <textarea class="form-control-contact" rows="5" placeholder="Comment pouvons-nous vous aider ?" name="message" required>{{ old('message') }}</textarea>
                             </div>
 
+                            {{-- Sécurité : Captcha via Session --}}
                             <div class="security-row d-flex align-items-center justify-content-between flex-wrap">
-                                <label class="mb-0 text-dark">Sécurité : entrez le nombre suivant : <strong id="captcha"></strong></label>
-                                <input type="text" name="heure" class="form-control-contact py-1" style="width: 80px !important;" required>
+                                <label class="mb-0 text-dark">
+                                    Sécurité : entrez le nombre suivant :
+                                    <strong class="text-primary fs-4 ms-2">{{ session('captcha') }}</strong>
+                                </label>
+                                <input type="number" name="heure" class="form-control-contact py-1" style="width: 100px !important;" required>
                             </div>
 
                             <div class="text-end">
-                                <button type="submit" name="contacter" class="btn-send">
-                                    Envoyer le formulaire <i class="bi bi-send-fill"></i>
+                                <button type="submit" class="btn-send">
+                                    Envoyer le formulaire <i class="bi bi-send-fill ms-2"></i>
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
 
+                {{-- Sidebar --}}
                 <div class="col-lg-4">
                     <div class="contact-sidebar">
                         <h4>Nos Coordonnées</h4>
-
                         <div class="info-item">
                             <i class="bi bi-geo-alt-fill"></i>
                             <div>
-                                <p><strong>Adresse</strong><br>
-                                    Abidjan Cocody Angré,<br>Cité Belle Fleur 3</p>
+                                <p><strong>Adresse</strong><br>Abidjan Cocody Angré, Cité Belle Fleur 3</p>
                             </div>
                         </div>
-
                         <div class="info-item">
                             <i class="bi bi-telephone-fill"></i>
                             <div>
-                                <p><strong>Téléphone</strong><br>
-                                    +225 25 22 00 20 77</p>
+                                <p><strong>Téléphone</strong><br>+225 25 22 00 20 77</p>
                             </div>
                         </div>
-
                         <div class="info-item">
                             <i class="bi bi-envelope-at-fill"></i>
                             <div>
-                                <p><strong>Support Email</strong><br>
-                                    info@ticafrique.com</p>
+                                <p><strong>Support Email</strong><br>info@ticafrique.com</p>
                             </div>
                         </div>
-
                         <div class="mt-5 pt-4 border-top border-secondary">
-                            <p class="small text-white-75">Nos bureaux sont ouverts du Lundi au Vendredi de 08h00 à 18h00.</p>
+                            <p class="small text-white-75">Bureaux ouverts : Lun - Ven (08h00 - 18h00).</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </main>
-
-
 @endsection

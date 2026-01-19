@@ -132,10 +132,10 @@
                 <h3>SMS Vocal <br></h3>
 
                 <div class="vocal-intro">
-                  SMS vocal de TICAFRIQUE, une autre façon plus smart de communiquer.
-Rédigez votre message et TICAFRIQUE le converti en message vocal ou enregistrez votre propre voix et
-TICAFRIQUE s’occupe de la transmission à votre interlocuteur via un simple appel.
-Les points forts de la solution :
+                    SMS vocal de TICAFRIQUE, une autre façon plus smart de communiquer.
+                    Rédigez votre message et TICAFRIQUE le converti en message vocal ou enregistrez votre propre voix et
+                    TICAFRIQUE s’occupe de la transmission à votre interlocuteur via un simple appel.
+                    Les points forts de la solution :
                 </div>
 
                 <ul class="vocal-features">

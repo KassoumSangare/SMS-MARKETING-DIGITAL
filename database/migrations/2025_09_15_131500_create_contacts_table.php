@@ -6,26 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('email');
-            $table->string('contact');
-            $table->string('sujet');
+            $table->string('nom', 150);
+            $table->string('email', 150);
+            $table->string('contact', 30);
+            $table->string('sujet', 200)->nullable();
             $table->text('message');
-            $table->string('ip')->nullable();
+            $table->ipAddress('ip')->nullable(); // Pour stocker l'adresse IP
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('contacts');
