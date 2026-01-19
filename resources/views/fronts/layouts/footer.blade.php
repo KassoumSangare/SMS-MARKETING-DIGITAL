@@ -3,7 +3,7 @@
        FOOTER STYLE - CLEAN WHITE
     ========================= */
     .footer-main {
-        background-color: #000f34 !important;
+        background-color: #1f2937 !important;
         color: var(--pure-white) !important;
         padding: 60px 0 30px 0 !important;
         border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
@@ -64,7 +64,7 @@
     }
 
     .contact-info-item i {
-        color: var(--primary-blue) !important;
+        color: var(--pure-white) !important;
         font-size: 1.2rem !important;
         margin-right: 12px !important;
     }

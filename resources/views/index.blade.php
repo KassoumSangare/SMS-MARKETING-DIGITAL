@@ -14,10 +14,23 @@
         --pure-white: #ffffff;
     }
 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !;
+
+    }
+
+    a {
+        text-decoration: none;
+    }
+
     body {
-        font-family: 'Poppins', sans-serif !important;
+
         color: var(--deep-black);
     }
+
 
     .section-title {
         color: var(--primary-blue);
@@ -27,8 +40,8 @@
 
     /* ===================== HERO OPTIMISÉ (SUPERPOSITION) ===================== */
     .stadium-hero {
-        background-color: #f8f9fa;
-        padding: 100px 0;
+        background-color: #eaf6ff;
+        padding: 30px 0;
         overflow: visible;
         /* Permet aux ombres et débordements d'être visibles */
     }
@@ -69,7 +82,7 @@
         border-radius: 30px;
         box-shadow: -20px 30px 80px rgba(11, 60, 93, 0.2);
         transition: transform 0.5s ease;
-        margin-left: 16px;
+        margin-left: 18px;
     }
 
 
@@ -176,7 +189,7 @@
 
 <main>
     <section class="stadium-hero">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row align-items-center g-0">
                 <div class="col-lg-7 hero-text-side fade-left">
                     <div class="stadium-board">
@@ -221,7 +234,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card p-4 text-center hover-card shadow-sm h-100 fade-up">
                         <div class="icon-box">
-                            <i class="{{ $obj['icon'] }} fa-2x text-primary"></i>
+                            <i class="{{ $obj['icon'] }} fa-2x text-secondary"></i>
                         </div>
                         <h5 class="fw-bold mb-3">{{ $obj['title'] }}</h5>
                         <p class="text-muted mb-0">{{ $obj['text'] }}</p>
@@ -239,12 +252,12 @@
                     <img src="{{ asset('site/img/augmenter_rendement.jpg') }}" class="img-fluid rounded-4 shadow-lg" alt="Rendement">
                 </div>
                 <div class="col-md-6 fade-right">
-                    <h2 class="section-title">Augmentez votre rendement avec le <span class="text-primary">SMS PROFESSIONNEL</span></h2>
+                    <h2 class="section-title">Augmentez votre rendement avec le <span class="text-dark">SMS PROFESSIONNEL</span></h2>
                     <p class="lead text-muted">Le SMS est le canal le plus direct et le plus efficace pour toucher vos clients instantanément.</p>
                     <ul class="list-unstyled mb-4">
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Communication instantanée</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Message personnalisé</li>
-                        <li><i class="fas fa-check-circle text-primary me-2"></i> Diffusion massive rapide</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i> Communication instantanée</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i> Message personnalisé</li>
+                        <li><i class="fas fa-check-circle text-secondary me-2"></i> Diffusion massive rapide</li>
                     </ul>
                     <a href="{{ route('ticafrique.demande') }}" class="btn btn-main">Commander</a>
                 </div>
@@ -263,7 +276,7 @@
             <div class="contact-modern-card shadow-lg">
                 <div class="row g-0">
                     <div class="col-lg-7 p-4 p-md-5 fade-left">
-                        <h3 class="fw-bold mb-4 text-primary">Transmettez-nous votre demande</h3>
+                        <h3 class="fw-bold mb-4 text-dark">Transmettez-nous votre demande</h3>
                         <form method="post" action="{{ route('ticafrique.store_contact') }}">
                             @csrf
                             <div class="row g-3">
