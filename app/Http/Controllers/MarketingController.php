@@ -73,15 +73,16 @@ class MarketingController extends Controller
 
 
         // Enregistrement
-        Contact::create([
-            'nom'     => $validated['nom'],
-            'email'   => $validated['email'],
-            'contact' => $validated['contact'],
-            'sujet'   => $validated['sujet'],
-            'message' => $validated['message'],
-            'ip'      => $request->ip()
-        ]);
+        // Contact::create([
+        //     'nom'     => $validated['nom'],
+        //     'email'   => $validated['email'],
+        //     'contact' => $validated['contact'],
+        //     'sujet'   => $validated['sujet'],
+        //     'message' => $validated['message'],
+        //     'ip'      => $request->ip()
+        // ]);
 
+        Contact::created($validated);
         // Reset du captcha
         session()->forget('captcha');
 

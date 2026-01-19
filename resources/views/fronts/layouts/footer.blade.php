@@ -3,15 +3,15 @@
        FOOTER STYLE - CLEAN WHITE
     ========================= */
     .footer-main {
-        background-color: var(--pure-white) !important;
-        color: var(--deep-black) !important;
+        background-color: #000f34 !important;
+        color: var(--pure-white) !important;
         padding: 60px 0 30px 0 !important;
         border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
         font-family: 'Inter', sans-serif !important;
     }
 
     .footer-title {
-        color: var(--dark-blue) !important;
+        color: var(--pure-white) !important;
         font-family: 'Saira', sans-serif !important;
         font-weight: 700 !important;
         font-size: 1.1rem !important;
@@ -21,7 +21,7 @@
     }
 
     .footer-link {
-        color: #666 !important;
+        color: var(--pure-white) !important;
         transition: var(--transition) !important;
         display: block !important;
         margin-bottom: 12px !important;
@@ -30,7 +30,7 @@
     }
 
     .footer-link:hover {
-        color: var(--primary-blue) !important;
+        color:#d1d1d1 !important;
         padding-left: 5px !important;
     }
 
@@ -59,7 +59,7 @@
         display: flex !important;
         align-items: center !important;
         margin-bottom: 15px !important;
-        color: #666 !important;
+        color: var(--pure-white) !important;
         font-size: 0.95rem !important;
     }
 
@@ -74,7 +74,12 @@
         padding-top: 30px !important;
         margin-top: 50px !important;
         font-size: 0.85rem !important;
-        color: #888 !important;
+        color: #d1d1d1 !important;
+    }
+
+    #mention{
+        text-decoration: none;
+        color: #d1d1d1;
     }
 </style>
 
@@ -131,11 +136,11 @@
         <div class="footer-bottom">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; {{ date('Y') }} <span class="fw-bold" style="color: var(--dark-blue);">TICAFRIQUE</span>. Tous droits réservés.
+                    &copy; {{ date('Y') }} <span class="fw-bold" style="color: var(--pure-white);">TICAFRIQUE</span>. Tous droits réservés.
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="#" class="text-decoration-none text-muted me-3 small">Mentions Légales</a>
-                    <a href="#" class="text-decoration-none text-muted small">Confidentialité</a>
+                <div class="col-md-6 text-center text-md-end ">
+                    <a href="#" class=" me-3 small" id="mention">Mentions Légales</a>
+                    <a href="#" class="small" id="mention">Confidentialité</a>
                 </div>
             </div>
         </div>
