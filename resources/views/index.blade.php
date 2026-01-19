@@ -48,7 +48,7 @@
 
     /* Le texte occupe plus de place et passe au-dessus */
     .stadium-board {
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(255, 255, 255, 0.96) transparent;
         border-left: 8px solid var(--accent-blue);
         border-radius: 20px;
         padding: 45px;
