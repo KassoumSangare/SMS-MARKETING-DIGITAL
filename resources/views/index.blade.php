@@ -41,7 +41,7 @@
     /* ===================== HERO OPTIMISÉ (SUPERPOSITION) ===================== */
     .stadium-hero {
         background-color: #eaf6ff;
-        padding: 30px 0;
+        padding: 100px 0;
         overflow: visible;
         /* Permet aux ombres et débordements d'être visibles */
     }
@@ -189,7 +189,7 @@
 
 <main>
     <section class="stadium-hero">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row align-items-center g-0">
                 <div class="col-lg-7 hero-text-side fade-left">
                     <div class="stadium-board">
