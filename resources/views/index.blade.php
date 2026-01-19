@@ -8,11 +8,8 @@
     /* ===================== VARIABLES & GLOBAL ===================== */
     :root {
         --primary-blue: #0b3c5d;
-        /* Bleu Foncé Ticafrique */
         --accent-blue: #0d6efd;
-        /* Bleu Action */
         --deep-black: #050505;
-        /* Noir Profond */
         --soft-gray: #f8f9fa;
         --pure-white: #ffffff;
     }
@@ -25,35 +22,69 @@
     .section-title {
         color: var(--primary-blue);
         font-weight: 700;
-        position: relative;
         margin-bottom: 1.5rem;
     }
 
-    /* ===================== COMPOSANTS UNIFORMES ===================== */
+    /* ===================== HERO ===================== */
+    .stadium-hero {
+        position: relative;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        background-color: #01146cbb;
+        padding: 60px 0;
+        overflow: hidden;
+    }
+
+    .hero-bg-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .hero-bg-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        mask-image: linear-gradient(to left, black 70%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to left, black 70%, transparent 100%);
+    }
+
+    .hero-content-container {
+        position: relative;
+        z-index: 10;
+    }
+
+    .stadium-board {
+        background: rgba(5, 5, 5, 0.85);
+        border-left: 5px solid var(--accent-blue);
+        border-radius: 10px;
+        padding: 40px;
+        backdrop-filter: blur(5px);
+    }
+
+    .digital-text-static {
+        font-family: 'Saira', sans-serif;
+        font-size: 2.5rem;
+        color: var(--pure-white);
+        text-transform: uppercase;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    /* ===================== CARTES ===================== */
     .hover-card {
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: all 0.4s ease;
         border-radius: 15px;
         border: none;
     }
 
     .hover-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(11, 60, 93, 0.1) !important;
-    }
-
-    .btn-main {
-        background: var(--accent-blue) !important;
-        color: var(--pure-white) !important;
-        padding: 12px 30px !important;
-        border-radius: 30px !important;
-        font-weight: 600 !important;
-        border: none !important;
-        transition: all 0.3s ease;
-    }
-
-    .btn-main:hover {
-        background: var(--primary-blue) !important;
-        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(11, 60, 93, 0.15);
     }
 
     .icon-box {
@@ -67,137 +98,124 @@
         margin: 0 auto 1.5rem;
     }
 
-    /* ===================== HERO STADIUM ===================== */
-    .stadium-hero {
-        position: relative;
-        height: 85vh;
-        min-height: 550px;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-        background-color: var(--deep-black);
-    }
-
-    .hero-bg-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
-    }
-
-    .stadium-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(8, 42, 63, 0.85) 0%, rgba(5, 5, 5, 0.28) 100%);
-        z-index: 1;
-    }
-
-    .hero-content-container {
-        position: relative;
-        z-index: 10;
-        width: 100%;
-    }
-
-    .stadium-board {
-        background: rgba(5, 5, 5, 0.9);
-        border: 3px solid var(--primary-blue);
-        border-radius: 20px;
-        padding: 50px;
-        box-shadow: 0 0 30px rgba(11, 60, 93, 0.4);
-    }
-
-    .digital-text {
-        font-family: 'Saira', sans-serif;
-        font-size: 2.2rem;
+    .btn-main {
+        background: var(--accent-blue);
         color: var(--pure-white);
-        text-transform: uppercase;
-        font-weight: 800;
-        line-height: 1.3;
-        min-height: 160px;
+        padding: 15px 40px;
+        border-radius: 30px;
+        font-weight: 600;
+        border: none;
     }
 
-    .cursor {
-        display: inline-block;
-        width: 12px;
-        height: 35px;
-        background-color: var(--accent-blue);
-        margin-left: 8px;
-        animation: blink 0.6s infinite;
-        vertical-align: middle;
+    /* ===================== ANIMATIONS ===================== */
+    .fade-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity .8s ease, transform .8s ease;
     }
 
-    @keyframes blink {
-        50% {
-            opacity: 0;
+    .fade-left {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .fade-right {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .show {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    .btn-pulse {
+        animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(13, 110, 253, .6);
+        }
+
+        70% {
+            box-shadow: 0 0 0 15px rgba(13, 110, 253, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
         }
     }
 
-    @media (max-width: 768px) {
-        .digital-text {
-            font-size: 1.4rem;
-            min-height: 220px;
+    @media (max-width: 991px) {
+        .hero-bg-container {
+            width: 100%;
+            opacity: 0.4;
         }
 
-        .stadium-board {
-            padding: 30px;
+        .digital-text-static {
+            font-size: 1.8rem;
         }
     }
 </style>
 
 <main>
+
+    <!-- ===================== HERO ===================== -->
     <section class="stadium-hero">
-        <img src="{{ asset('site/img/4.png') }}" class="hero-bg-img" alt="Background Ticafrique">
+        <div class="hero-bg-container">
+            <img src="{{ asset('site/img/bg_home.jpg') }}" class="hero-bg-img">
+        </div>
+
         <div class="container hero-content-container">
             <div class="row">
-                <div class="col-lg-10 col-xl-9">
-                    <div class="stadium-board animate__animated animate__fadeInLeft">
-                        <div class="digital-text">
-                            <span id="stadium-display"></span><span class="cursor"></span>
-                        </div>
-                        <div class="mt-5 d-flex gap-3 flex-wrap">
-                            <a href="{{ route('ticafrique.demande')}}" class="btn btn-main btn-lg">Commander</a>
-                            <!-- <a href="#services" class="btn btn-outline-light rounded-pill px-5 py-3 fw-bold">NOS SERVICES</a> -->
-                        </div>
+                <div class="col-lg-7">
+                    <div class="stadium-board fade-left">
+                        <h1 class="digital-text-static">
+                            Avec le SMS professionnel de TICAFRIQUE, améliorez votre productivité.
+                        </h1>
+                        <p class="text-white-50 mt-3 fs-5">
+                            Bénéficiez de nouveaux canaux de communication performants.
+                        </p>
+                        <a href="{{ route('ticafrique.demande') }}" class="btn btn-main btn-pulse mt-3">
+                            Commander Maintenant
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-5 bg-white">
+    <!-- ===================== OBJECTIFS ===================== -->
+    <section class="py-5 bg-white">
         <div class="container py-4">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <span class="badge bg-light text-primary px-4 py-2 rounded-pill fw-bold mb-3">NOS OBJECTIFS</span>
+            <div class="text-center mb-5 fade-up">
+                <span class="badge bg-light text-primary px-4 py-2 rounded-pill fw-bold">NOS OBJECTIFS</span>
                 <h2 class="section-title">Comment booster votre communication ?</h2>
             </div>
 
             <div class="row g-4">
                 @php
                 $objectifs = [
-                ['img'=>'5.png','title'=>'Rassurer et fidéliser','text'=>'Privilégiez une relation de proximité avec vos clients.'],
-                ['img'=>'6.png','title'=>'Promouvoir','text'=>'Informez votre cible des arrivages et des promotions.'],
-                ['img'=>'7.png','title'=>'Réduire les coûts','text'=>'Optimisez vos budgets sans sacrifier la qualité.'],
-                ['img'=>'8.jpg','title'=>'Instantannéité','text'=>'Informez vos partenaires des évènements en temps réel.'],
-                ['img'=>'9.png','title'=>'Rendement Accru','text'=>'Automatisez vos tâches quotidiennes efficacement.'],
-                ['img'=>'10.png','title'=>'Cible Atteinte','text'=>'Une relation directe avec une cible joignable 24h/24.']
+                ['img'=>'5.png','title'=>'Rassurer et fidéliser','text'=>'Relation de proximité avec vos clients'],
+                ['img'=>'6.png','title'=>'Promouvoir','text'=>'Diffusion des promotions'],
+                ['img'=>'7.png','title'=>'Réduire les coûts','text'=>'Optimisation budgétaire'],
+                ['img'=>'8.jpg','title'=>'Instantanéité','text'=>'Information en temps réel'],
+                ['img'=>'9.png','title'=>'Rendement accru','text'=>'Automatisation des tâches'],
+                ['img'=>'10.png','title'=>'Cible atteinte','text'=>'Clients joignables 24h/24']
                 ];
                 @endphp
 
                 @foreach($objectifs as $obj)
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                    <div class="card h-100 p-4 text-center hover-card shadow-sm">
+                <div class="col-md-4">
+                    <div class="card p-4 text-center hover-card shadow-sm fade-up">
                         <div class="icon-box">
-                            <img src="{{ asset('site/img/'.$obj['img']) }}" width="40" class="rounded-circle">
+                            <img src="{{ asset('site/img/'.$obj['img']) }}" width="40">
                         </div>
                         <h6 class="fw-bold">{{ $obj['title'] }}</h6>
-                        <p class="text-muted small mb-0">{{ $obj['text'] }}</p>
+                        <p class="text-muted small">{{ $obj['text'] }}</p>
                     </div>
                 </div>
                 @endforeach
@@ -205,124 +223,50 @@
         </div>
     </section>
 
+    <!-- ===================== RENDEMENT ===================== -->
     <section class="py-5 bg-light">
         <div class="container py-4">
             <div class="row align-items-center g-5">
-                <div class="col-md-6" data-aos="fade-right">
-                    <img src="{{ asset('site/img/augmenter_rendement.jpg') }}" class="img-fluid rounded-4 shadow-lg" alt="Rendement">
+                <div class="col-md-6 fade-left">
+                    <img src="{{ asset('site/img/augmenter_rendement.jpg') }}" class="img-fluid rounded-4 shadow-lg">
                 </div>
-                <div class="col-md-6" data-aos="fade-left">
-                    <h2 class="section-title">Augmentez votre rendement avec le <span class="text-primary">SMS PROFESSIONNEL</span></h2>
-                    <p class="text-muted lead">Le SMS est l'outil le plus puissant pour atteindre directement votre cible en quelques secondes.</p>
-
-                    <ul class="list-unstyled mt-4">
-                        <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-primary me-3 fs-5"></i> Relation instantanée avec vos partenaires</li>
-                        <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-primary me-3 fs-5"></i> Communication directe et personnalisée</li>
-                        <li class="mb-3 d-flex align-items-center"><i class="bi bi-check-circle-fill text-primary me-3 fs-5"></i> Diffusion massive ultra-rapide</li>
+                <div class="col-md-6 fade-right">
+                    <h2 class="section-title">
+                        Augmentez votre rendement avec le <span class="text-primary">SMS PROFESSIONNEL</span>
+                    </h2>
+                    <p class="lead text-muted">
+                        Le SMS est le canal le plus direct et le plus efficace.
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">✔ Communication instantanée</li>
+                        <li class="mb-2">✔ Message personnalisé</li>
+                        <li class="mb-2">✔ Diffusion massive rapide</li>
                     </ul>
-
-                    <div class="mt-4">
-                        <a href="{{ route('ticafrique.demande') }}" class="btn btn-main btn-lg px-5">Commander maintenant</a>
-                    </div>
+                    <a href="{{ route('ticafrique.demande') }}" class="btn btn-main mt-3">Commander</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5 bg-white">
-        <div class="container py-4">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-title">Pourquoi choisir TICAFRIQUE ?</h2>
-                <p class="text-primary fw-bold">Votre succès numérique est notre priorité</p>
-            </div>
-
-            <div class="row g-4">
-                @php
-                $atouts = [
-                ['t'=>'Rapidité','d'=>'Compte créé en 10 minutes avec un conseiller dédié.'],
-                ['t'=>'Proximité','d'=>'Une équipe locale qui comprend vos défis réels.'],
-                ['t'=>'Clé en main','d'=>'Tout le nécessaire pour une prise en main immédiate.'],
-                ['t'=>'Assistance','d'=>'Un support technique disponible pour toutes vos attentes.']
-                ];
-                @endphp
-                @foreach($atouts as $atout)
-                <div class="col-md-3" data-aos="fade-up">
-                    <div class="p-4 bg-light border-start border-4 border-primary h-100 rounded-end">
-                        <h5 class="fw-bold">{{ $atout['t'] }}</h5>
-                        <p class="small text-muted mb-0">{{ $atout['d'] }}</p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-
-            <div class="mt-5 bg-blue-dark text-white p-4 rounded-4 text-center shadow" style="background: var(--primary-blue)">
-                <p class="lead mb-0 fw-bold">Prêt à toucher des milliers de clients ? Contactez-nous.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-md-6" data-aos="fade-right">
-                    <h2 class="section-title">Voulez-vous tout savoir sur le <span class="text-primary">SMS MARKETING ?</span></h2>
-                    <p class="text-muted fs-5">Laissez-nous un message, nos experts vous rappellent gratuitement sous 24h.</p>
-                </div>
-
-                <div class="col-md-6" data-aos="fade-left">
-                    <div class="card border-0 shadow-lg p-4 rounded-4">
-                        <form id="contactForm" method="post" action="{{ route('ticafrique.store_contact') }}">
-                            <div class="mb-3">
-                                <input type="text" class="form-control form-control-lg border-light bg-light" placeholder="Nom complet">
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control form-control-lg border-light bg-light" placeholder="Téléphone">
-                            </div>
-                            <div class="mb-3">
-                                <input type="email" class="form-control form-control-lg border-light bg-light" placeholder="Email professionnel">
-                            </div>
-                            <div class="mb-3">
-                                <textarea class="form-control form-control-lg border-light bg-light" rows="3" placeholder="Votre projet..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-main w-100 py-3 fs-5">ENVOYER LE MESSAGE</button>
-                            <div class="text-center mt-4">
-                                <a href="tel:+2252522002077" class="text-primary fw-bold text-decoration-none">
-                                    <i class="bi bi-telephone-fill me-2"></i> +225 25 22 00 20 77
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 
+<!-- ===================== JS ANIMATIONS ===================== -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Animation Typewriter Stadium
-        const textElement = document.getElementById('stadium-display');
-        const fullText = "Avec le SMS professionnel de TICAFRIQUE, bénéficiez de nouveaux canaux de communication sur la plateforme de TICAFRIQUE et améliorez votre productivité.";
-        let charIndex = 0;
+    document.addEventListener('DOMContentLoaded', () => {
 
-        function typeStadiumEffect() {
-            if (charIndex < fullText.length) {
-                textElement.textContent += fullText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeStadiumEffect, 40);
-            } else {
-                gsap.to(".stadium-board", {
-                    borderColor: "#ffffff",
-                    duration: 0.8,
-                    repeat: 3,
-                    yoyo: true,
-                    ease: "power2.inOut"
-                });
-            }
-        }
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
 
-        // Lancement avec un délai pour laisser le preloader finir
-        setTimeout(typeStadiumEffect, 1200);
+        document.querySelectorAll('.fade-up, .fade-left, .fade-right')
+            .forEach(el => observer.observe(el));
+
     });
 </script>
 

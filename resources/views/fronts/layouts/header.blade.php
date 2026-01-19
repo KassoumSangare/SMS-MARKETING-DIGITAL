@@ -74,7 +74,7 @@
        BOUTON PORTAIL (MODERNE)
     ========================= */
     .btn-portail {
-        background-color: #0c2ed7 !important;
+        background-color: var(--accent-blue) !important;
         color: var(--white) !important;
         border: none !important;
         padding: 0.7rem 1.8rem !important;

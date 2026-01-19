@@ -38,7 +38,7 @@
     .social-icon {
         width: 40px !important;
         height: 40px !important;
-        background-color: #334ccb !important;
+        background-color: var(--accent-blue) !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -50,8 +50,8 @@
     }
 
     .social-icon:hover {
-        background-color: white!important;
-        color: #334ccbd0 !important;
+        background-color: white !important;
+        color: var(--primary-blue) !important;
         transform: translateY(-3px) !important;
     }
 
