@@ -12,7 +12,7 @@
 
     .footer-title {
         color: var(--pure-white) !important;
-        font-family: 'Saira', sans-serif !important;
+       
         font-weight: 700 !important;
         font-size: 1.1rem !important;
         text-transform: uppercase !important;

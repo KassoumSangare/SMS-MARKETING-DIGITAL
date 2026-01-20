@@ -19,12 +19,7 @@
         overflow: clip;
     }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+
 
     a {
         text-decoration: none;
@@ -80,7 +75,7 @@
         /* Remplit tout l'espace sans déformation */
         border-radius: 0 20px 20px 0;
         /* Arrondi à droite */
-        box-shadow: 10px 15px 40px rgba(0, 0, 0, 0.1);
+       
     }
 
     /* ===================== BOUTONS & CARTES ===================== */
@@ -150,7 +145,7 @@
     .stat-number {
         font-size: 3rem;
         font-weight: 800;
-        color: #4dabff;
+        color: #ffffff;
         display: block;
     }
 
@@ -221,7 +216,7 @@
                 </div>
                 <div class="col-lg-6 fade-right">
                     <div class="hero-img-side">
-                        <img src="{{ asset('site/img/1.jpg') }}" alt="Background Ticafrique">
+                        <img src="{{ asset('site/img/new_bg.png') }}" alt="Background Ticafrique">
                     </div>
                 </div>
             </div>
@@ -325,6 +320,9 @@
                             <p class="mb-3"><i class="fas fa-phone-alt me-2"></i> +225 25 22 00 20 77</p>
                             <p class="mb-3"><i class="fas fa-envelope me-2"></i> info@ticafrique.com</p>
                         </div>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.3361474582!2d-3.9856!3d5.3484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1934983057e93%3A0x6a0a000000000000!2sCocody%2C%20Abidjan!5e0!3m2!1sfr!2sci!4v1620000000000!5m2!1sfr!2sci"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         <hr class="opacity-25">
                         <p class="small text-white-50">Nos experts vous répondent sous 24h ouvrées.</p>
                     </div>
