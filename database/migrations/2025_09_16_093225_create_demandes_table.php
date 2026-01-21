@@ -8,29 +8,34 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('demandes', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('societe');             // Personne Physique ou Société
+            $table->id();
+
+            // Étape 1 - Identité
+            $table->string('societe');
             $table->string('adresse')->nullable();
             $table->string('raisonsocial')->nullable();
             $table->string('rccm')->nullable();
             $table->string('ville')->nullable();
-            $table->string('activite')->nullable();
+            $table->string('activite');
 
-            $table->string('username');
-            $table->string('expediteur');
-            $table->integer('nbcompte');
-            $table->decimal('montant', 12, 2);
+            // Étape 2 - Compte
+            $table->string('username')->nullable();
+            $table->string('expediteur', 11)->nullable();
+            $table->unsignedInteger('nbcompte')->default(0);
+            $table->decimal('montant', 12, 2)->nullable();
 
-            $table->string('nom');
-            $table->string('fonction');
-            $table->string('tel');
-            $table->string('fax')->nullable();
-            $table->string('email');
+            // Étape 3 - Contact
+            $table->string('nom')->nullable();
+            $table->string('fonction')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('email')->nullable();
 
+            // Étape 4 - Finalisation
             $table->text('complementaire')->nullable();
-
+            $table->string('captcha');
             $table->boolean('validation')->default(false);
 
+            // Meta
             $table->timestamps();
         });
     }

@@ -3,6 +3,8 @@
 @section('title', 'Demande de création de compte | TicAfrique')
 
 @section('content')
+
+
 <style>
     /* =========================
        WIZARD FORM STYLE
@@ -149,19 +151,42 @@
             <div class="col-lg-10">
                 <div class="card wizard-card">
                     <div class="card-body p-5">
-                        <h2 class="text-center mb-5 fw-bold" style="color: var(--dark-blue);">Demande de Création de Compte</h2>
 
+                        <h2 class="text-center mb-5 fw-bold" style="color: var(--dark-blue);">
+                            Demande de Création de Compte
+                        </h2>
+
+                        {{-- SUCCESS --}}
+                        @if(session()->has('success'))
+                        <div class="alert alert-success border-0 shadow-sm rounded-4 mb-4">
+                            <i class="fas fa-check-circle me-2"></i>
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
+                        {{-- ERREURS --}}
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        {{-- STEPS --}}
                         <div class="wizard-steps">
-                            <div class="step-item active" id="s1">
+                            <div class="step-item active">
                                 <div class="step-number">1</div><span>Identité</span>
                             </div>
-                            <div class="step-item" id="s2">
+                            <div class="step-item">
                                 <div class="step-number">2</div><span>Compte</span>
                             </div>
-                            <div class="step-item" id="s3">
+                            <div class="step-item">
                                 <div class="step-number">3</div><span>Contact</span>
                             </div>
-                            <div class="step-item" id="s4">
+                            <div class="step-item">
                                 <div class="step-number">4</div><span>Finalisation</span>
                             </div>
                         </div>
@@ -169,106 +194,132 @@
                         <form method="POST" action="{{ route('ticafrique.store_demande') }}" id="multiStepForm">
                             @csrf
 
+                            {{-- ETAPE 1 --}}
                             <section class="wizard-section active">
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Type de profil :</label>
+                                        <label class="form-label-pro">Type de profil</label>
                                         <select name="societe" id="type_profil" class="form-select input-pro">
                                             <option value="Personne Physique">Personne Physique</option>
                                             <option value="Société">Société</option>
                                         </select>
                                     </div>
+
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Adresse :</label>
+                                        <label class="form-label-pro">Adresse</label>
                                         <input type="text" name="adresse" class="form-control input-pro">
                                     </div>
 
-                                    <div id="entreprise-fields" class="col-12" style="display:none;">
+                                    <div id="entreprise-fields" class="col-12 d-none">
                                         <div class="row g-4">
                                             <div class="col-md-6">
-                                                <label class="form-label-pro">Nom de l'entreprise :</label>
+                                                <label class="form-label-pro">Nom de l'entreprise</label>
                                                 <input type="text" name="raisonsocial" class="form-control input-pro uppercase">
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label-pro">RCCM :</label>
+                                                <label class="form-label-pro">RCCM</label>
                                                 <input type="text" name="rccm" class="form-control input-pro">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Ville :</label>
+                                        <label class="form-label-pro">Ville</label>
                                         <input type="text" name="ville" class="form-control input-pro uppercase">
                                     </div>
+
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Activité :</label>
+                                        <label class="form-label-pro">Activité *</label>
                                         <input type="text" name="activite" class="form-control input-pro uppercase" required>
                                     </div>
                                 </div>
                             </section>
 
+                            {{-- ETAPE 2 --}}
                             <section class="wizard-section">
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Nom d’utilisateur :</label>
-                                        <input type="text" name="username" class="form-control input-pro uppercase" placeholder="Un seul mot">
+                                        <label class="form-label-pro">Nom d’utilisateur</label>
+                                        <input type="text" name="username" class="form-control input-pro uppercase">
                                     </div>
+
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Nom d’expéditeur :</label>
+                                        <label class="form-label-pro">Nom d’expéditeur</label>
                                         <input type="text" name="expediteur" class="form-control input-pro uppercase" maxlength="11">
                                     </div>
+
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Nombre de sous-comptes :</label>
+                                        <label class="form-label-pro">Nombre de sous-comptes</label>
                                         <input type="number" name="nbcompte" class="form-control input-pro" value="0">
                                     </div>
+
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Montant (FCFA) :</label>
-                                        <input type="text" name="montant" class="form-control input-pro">
+                                        <label class="form-label-pro">Montant (FCFA)</label>
+                                        <input type="number" name="montant" class="form-control input-pro" min="0">
                                     </div>
                                 </div>
                             </section>
 
+                            {{-- ETAPE 3 --}}
                             <section class="wizard-section">
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Nom complet :</label>
+                                        <label class="form-label-pro">Nom complet</label>
                                         <input type="text" name="nom" class="form-control input-pro uppercase">
                                     </div>
+
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Fonction :</label>
+                                        <label class="form-label-pro">Fonction</label>
                                         <input type="text" name="fonction" class="form-control input-pro uppercase">
                                     </div>
+
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Téléphone :</label>
+                                        <label class="form-label-pro">Téléphone</label>
                                         <input type="tel" name="tel" class="form-control input-pro">
                                     </div>
+
                                     <div class="col-md-6">
-                                        <label class="form-label-pro">Email professionnel :</label>
+                                        <label class="form-label-pro">Email professionnel</label>
                                         <input type="email" name="email" class="form-control input-pro">
                                     </div>
                                 </div>
                             </section>
 
+                            {{-- ETAPE 4 --}}
                             <section class="wizard-section text-center">
                                 <div class="mb-4">
-                                    <label class="form-label-pro">Informations complémentaires :</label>
+                                    <label class="form-label-pro">Informations complémentaires</label>
                                     <textarea name="complementaire" rows="4" class="form-control input-pro"></textarea>
                                 </div>
+
                                 <div class="alert alert-info py-3 border-0">
-                                    <label class="mb-0 fw-bold">Code de sécurité : <span id="captcha"></span></label>
-                                    <input type="text" name="heure" class="form-control d-inline-block ms-2" style="width: 80px;" required>
+                                    <label class="fw-bold">
+                                        Code de sécurité : <span id="captcha"></span>
+                                    </label>
+                                    <input type="text" name="captcha" class="form-control d-inline-block ms-2" style="width:80px" required>
                                 </div>
-                                <div class="form-check d-inline-block mt-3 text-start">
-                                    <input type="checkbox" name="validation" class="form-check-input" id="checkTerms" required>
-                                    <label class="form-check-label" for="checkTerms">J'ai lu et j'accepte les <a href="#" class="text-primary">conditions d'utilisation</a></label>
+
+                                <div class="form-check mt-3 text-start d-inline-block">
+                                    <input type="checkbox" name="validation" class="form-check-input" required>
+                                    <label class="form-check-label">
+                                        J'accepte les conditions d'utilisation
+                                    </label>
                                 </div>
+
+                                {{-- BOUTON SUBMIT  --}}
+                                <button type="submit" class="btn-submit-final mt-4 d-none" id="submitBtn">
+                                    Soumettre la demande
+                                </button>
                             </section>
 
+                            {{-- NAVIGATION --}}
                             <div class="wizard-buttons">
-                                <button type="button" class="btn-prev" id="prevBtn" onclick="nextPrev(-1)">Précédent</button>
-                                <button type="button" class="btn-next" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
+                                <button type="button" class="btn-prev" id="prevBtn">Précédent</button>
+                                <button type="button" class="btn-next" id="nextBtn">Suivant</button>
                             </div>
+
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -276,67 +327,56 @@
     </div>
 </div>
 
+
 <script>
-    var currentTab = 0;
-    showTab(currentTab);
+    let currentTab = 0;
+    const sections = document.querySelectorAll('.wizard-section');
+    const steps = document.querySelectorAll('.step-item');
 
     function showTab(n) {
-        var x = document.getElementsByClassName("wizard-section");
-        x[n].classList.add("active");
+        sections.forEach(s => s.classList.remove('active'));
+        sections[n].classList.add('active');
 
-        // Bouton précédent
-        if (n == 0) {
-            document.getElementById("prevBtn").style.visibility = "hidden";
+        document.getElementById('prevBtn').style.visibility = n === 0 ? 'hidden' : 'visible';
+
+        if (n === sections.length - 1) {
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('submitBtn').classList.remove('d-none');
         } else {
-            document.getElementById("prevBtn").style.visibility = "visible";
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            document.getElementById('submitBtn').classList.add('d-none');
         }
 
-        // Bouton Suivant / Envoyer
-        if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Soumettre la demande";
-            document.getElementById("nextBtn").classList.replace("btn-next", "btn-submit-final");
-        } else {
-            document.getElementById("nextBtn").innerHTML = "Suivant";
-            document.getElementById("nextBtn").classList.replace("btn-submit-final", "btn-next");
-        }
-        updateSteps(n);
-    }
-
-    function nextPrev(n) {
-        var x = document.getElementsByClassName("wizard-section");
-        // Sortie de l'étape actuelle
-        x[currentTab].classList.remove("active");
-        currentTab = currentTab + n;
-
-        if (currentTab >= x.length) {
-            document.getElementById("multiStepForm").submit();
-            return false;
-        }
-        showTab(currentTab);
-    }
-
-    function updateSteps(n) {
-        var steps = document.getElementsByClassName("step-item");
-        for (var i = 0; i < steps.length; i++) {
-            steps[i].classList.remove("active", "completed");
-            if (i < n) steps[i].classList.add("completed");
-            if (i == n) steps[i].classList.add("active");
-        }
-    }
-
-    // Logique Affichage Entreprise
-    document.getElementById('type_profil').addEventListener('change', function() {
-        const fields = document.getElementById('entreprise-fields');
-        fields.style.display = (this.value === 'Société') ? 'block' : 'none';
-    });
-
-    // Auto UpperCase
-    document.querySelectorAll('.uppercase').forEach(input => {
-        input.addEventListener('input', function() {
-            this.value = this.value.toUpperCase();
+        steps.forEach((s, i) => {
+            s.classList.toggle('active', i === n);
+            s.classList.toggle('completed', i < n);
         });
+    }
+
+    document.getElementById('nextBtn').onclick = () => {
+        if (currentTab < sections.length - 1) {
+            currentTab++;
+            showTab(currentTab);
+        }
+    };
+
+    document.getElementById('prevBtn').onclick = () => {
+        if (currentTab > 0) {
+            currentTab--;
+            showTab(currentTab);
+        }
+    };
+
+    document.getElementById('type_profil').addEventListener('change', function() {
+        document.getElementById('entreprise-fields')
+            .classList.toggle('d-none', this.value !== 'Société');
     });
 
-    
+    document.querySelectorAll('.uppercase').forEach(i =>
+        i.addEventListener('input', () => i.value = i.value.toUpperCase())
+    );
+
+    showTab(currentTab);
 </script>
+
 @endsection

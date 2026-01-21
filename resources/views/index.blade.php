@@ -197,7 +197,7 @@
 
 <main>
     <section class="stadium-hero">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row align-items-stretch g-0">
                 <div class="col-lg-6 fade-left">
                     <div class="stadium-board">

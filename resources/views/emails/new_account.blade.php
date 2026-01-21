@@ -19,11 +19,11 @@
         <table style="width:100%; border-collapse: collapse; margin-top: 15px;">
             <tr>
                 <td style="padding: 8px; border: 1px solid #ddd;"><strong>Nom complet</strong></td>
-                <td style="padding: 8px; border: 1px solid #ddd;">{{ $user['nom'] }}</td>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ $data['nom'] }}</td>
             </tr>
             <tr>
                 <td style="padding: 8px; border: 1px solid #ddd;"><strong>Email</strong></td>
-                <td style="padding: 8px; border: 1px solid #ddd;">{{ $user['email'] }}</td>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ $data['email'] }}</td>
             </tr>
             <tr>
                 <td style="padding: 8px; border: 1px solid #ddd;"><strong>Société</strong></td>

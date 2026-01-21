@@ -2,34 +2,38 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Demande extends Model
 {
-    use HasFactory;
+    protected $table = 'demandes';
 
     protected $fillable = [
-        'id',
         'societe',
         'adresse',
         'raisonsocial',
         'rccm',
         'ville',
         'activite',
+
         'username',
         'expediteur',
         'nbcompte',
         'montant',
+
         'nom',
         'fonction',
         'tel',
-        'fax',
         'email',
+
         'complementaire',
+        'captcha',
         'validation',
     ];
 
-    public $incrementing = false;
-    protected $keyType = 'string';
+    protected $casts = [
+        'validation' => 'boolean',
+        'nbcompte'   => 'integer',
+        'montant'   => 'decimal:2',
+    ];
 }
