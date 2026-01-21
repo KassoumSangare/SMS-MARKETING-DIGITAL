@@ -356,7 +356,7 @@
                 <div class="p-5 rounded-4" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
                     <h2 class="fw-bold mb-3">Prêt à transformer votre communication ?</h2>
                     <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
-                        <a href="{{ route('ticafrique.demande') }}" class="btn btn-light px-5 py-3 rounded-pill fw-bold">Démarrer mon projet</a>
+                        <a href="{{ route('ticafrique.demande') }}" class="btn btn-light px-5 py-3 rounded-pill fw-bold">Commander maintenant</a>
                         <a href="tel:+2252522002077" class="btn btn-outline-light px-5 py-3 rounded-pill fw-bold">Nous appeler</a>
                     </div>
                 </div>
